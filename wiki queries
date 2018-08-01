@@ -1,0 +1,164 @@
+// get all pages from the category "Großsteingrab im Landkreis Lüneburg"
+
+  https://de.wikipedia.org/w/api.php?action=query&cmlimit=100&list=categorymembers&cmpageid=9640102&format=json
+
+
+// Sample Output:
+
+"query": {
+        "categorymembers": [
+            {
+                "pageid": 7952125,
+                "ns": 0,
+                "title": "Gro\u00dfsteingrab Ahndorf"
+            },
+            {
+                "pageid": 9923715,
+                "ns": 0,
+                "title": "Gro\u00dfsteingrab Alt Garge"
+            }
+            }
+
+
+https://de.wikipedia.org/api/rest_v1/page/summary/Gro%C3%9Fsteingrab_Ahndorf
+
+{
+  "type": "standard",
+  "title": "Großsteingrab Ahndorf",
+  "displaytitle": "Großsteingrab Ahndorf",
+  "namespace": {
+    "id": 0,
+    "text": ""
+  },
+  "titles": {
+    "canonical": "Großsteingrab_Ahndorf",
+    "normalized": "Großsteingrab Ahndorf",
+    "display": "Großsteingrab Ahndorf"
+  },
+  "pageid": 7952125,
+  "thumbnail": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg",
+    "width": 320,
+    "height": 270
+  },
+  "originalimage": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Lower_Saxony_relief_location_map.jpg",
+    "width": 1786,
+    "height": 1509
+  },
+  "lang": "de",
+  "dir": "ltr",
+  "revision": "169844710",
+  "tid": "7c07f3b1-3a44-11e8-a3e0-c703ad2910ff",
+  "timestamp": "2017-10-09T17:24:17Z",
+  "coordinates": {
+    "lat": 53.14514722,
+    "lon": 10.70563333
+  },
+  "content_urls": {
+    "desktop": {
+      "page": "https://de.wikipedia.org/wiki/Großsteingrab_Ahndorf",
+      "revisions": "https://de.wikipedia.org/wiki/Großsteingrab_Ahndorf?action=history",
+      "edit": "https://de.wikipedia.org/wiki/Großsteingrab_Ahndorf?action=edit",
+      "talk": "https://de.wikipedia.org/wiki/Diskussion:Großsteingrab_Ahndorf"
+    },
+    "mobile": {
+      "page": "https://de.m.wikipedia.org/wiki/Großsteingrab_Ahndorf",
+      "revisions": "https://de.m.wikipedia.org/wiki/Special:History/Großsteingrab_Ahndorf",
+      "edit": "https://de.m.wikipedia.org/wiki/Großsteingrab_Ahndorf?action=edit",
+      "talk": "https://de.m.wikipedia.org/wiki/Diskussion:Großsteingrab_Ahndorf"
+    }
+  },
+  "api_urls": {
+    "summary": "https://de.wikipedia.org/api/rest_v1/page/summary/Großsteingrab_Ahndorf",
+    "edit_html": "https://de.wikipedia.org/api/rest_v1/page/html/Großsteingrab_Ahndorf",
+    "talk_page_html": "https://de.wikipedia.org/api/rest_v1/page/html/Diskussion:Großsteingrab_Ahndorf"
+  },
+  "extract": "Das Großsteingrab Ahndorf ist eine megalithische Grabanlage der jungsteinzeitlichen Trichterbecherkultur (TBK) nahe dem zur Gemeinde Boitze gehörenden Ortsteil Ahndorf im Landkreis Lüneburg, Niedersachsen. Es trägt die Sprockhoff-Nummer 720.",
+  "extract_html": "<p>Das <b>Großsteingrab Ahndorf</b> ist eine megalithische Grabanlage der jungsteinzeitlichen Trichterbecherkultur (TBK) nahe dem zur Gemeinde Boitze gehörenden Ortsteil Ahndorf im Landkreis Lüneburg, Niedersachsen. Es trägt die Sprockhoff-Nummer 720.</p>"
+}
+
+
+https://de.wikipedia.org/w/api.php?action=query&pageids=7952125&prop=info&format=jsonfm&formatversion=2
+
+{
+    "batchcomplete": true,
+    "query": {
+        "pages": [
+            {
+                "pageid": 7952125,
+                "ns": 0,
+                "title": "Großsteingrab Ahndorf",
+                "contentmodel": "wikitext",
+                "pagelanguage": "de",
+                "pagelanguagehtmlcode": "de",
+                "pagelanguagedir": "ltr",
+                "touched": "2018-06-13T16:05:57Z",
+                "lastrevid": 169844710,
+                "length": 2357
+            }
+        ]
+    }
+}
+
+
+https://de.wikipedia.org/w/api.php?action=parse&pageid=7952125&prop=wikitext|images|sections&format=jsonfm&formatversion=2
+
+{
+    "parse": {
+        "title": "Großsteingrab Ahndorf",
+        "pageid": 7952125,
+        "images": [
+            "Red_pog.svg",
+            "Photo-request.svg",
+            "Lower_Saxony_relief_location_map.jpg",
+            "Ahndorf_Steingrab_a.jpg",
+            "Ahndorf_Steingrab_c.jpg",
+            "Ahndorf_Steingrab_b.jpg",
+            "Commons-logo.svg"
+        ],
+        "sections": [
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Lage",
+                "number": "1",
+                "index": "1",
+                "fromtitle": "Großsteingrab_Ahndorf",
+                "byteoffset": 678,
+                "anchor": "Lage"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Beschreibung",
+                "number": "2",
+                "index": "2",
+                "fromtitle": "Großsteingrab_Ahndorf",
+                "byteoffset": 983,
+                "anchor": "Beschreibung"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Literatur",
+                "number": "3",
+                "index": "3",
+                "fromtitle": "Großsteingrab_Ahndorf",
+                "byteoffset": 1651,
+                "anchor": "Literatur"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Weblinks",
+                "number": "4",
+                "index": "4",
+                "fromtitle": "Großsteingrab_Ahndorf",
+                "byteoffset": 2101,
+                "anchor": "Weblinks"
+            }
+        ],
+        "wikitext": "{{Infobox Megalithanlage\n|Alternativname     = \n|Längengrad         = 10/42/20.28/E\n|Breitengrad        = 53/08/42.53/N\n|Region-ISO         = DE-NI\n|Höhe               = \n|Ort                = [[Boitze]]\n|Entstehung         = 3500 bis 2800 v. Chr.\n|Ausmaße            = \n|Sprockhoff         = 720\n|Bild               = \n|Bildbeschreibung   = \n|Kartenbeschreibung = \n}}\n\nDas '''Großsteingrab Ahndorf''' ist eine [[megalith]]ische Grabanlage der [[Jungsteinzeit|jungsteinzeitlichen]] [[Trichterbecherkultur]] (TBK) nahe dem zur Gemeinde [[Boitze]] gehörenden Ortsteil Ahndorf im [[Landkreis Lüneburg]], [[Niedersachsen]]. Es trägt die [[Ernst Sprockhoff|Sprockhoff-Nummer]] 720.\n\n== Lage ==\nDas Grab befindet sich südwestlich von Ahndorf in einem Waldstück, unmittelbar an der Grenze zum [[Landkreis Uelzen]]. Im gleichen Waldstück befinden sich nordwestlich die [[Großsteingräber bei Lemgrabe]] und südöstlich das [[Großsteingräber bei Groß Thondorf|Großsteingrab Groß Thondorf 1]].\n\n== Beschreibung ==\nDie Anlage ist stark zerstört. Sie besitzt eine flache Hügelschüttung. Die Grabkammer ist ungefähr ost-westlich orientiert. Sie hat eine Länge von 9,5 m sowie eine Breite von 3 m an der östlichen und von 2,3 m an der westlichen Schmalseite. Es sind noch zwölf Steine vorhanden, von denen sich aber keiner mehr an seinem ursprünglichen Standort befindet. Eine Rekonstruktion des ursprünglichen Aussehens der Anlage ist daher nicht möglich.\n\n{{Mehrere Bilder\n | Bild1=Ahndorf_Steingrab_a.jpg\n | Bild2=Ahndorf_Steingrab_c.jpg\n | Bild3=Ahndorf_Steingrab_b.jpg\n | Fußzeile=Großsteingrab Ahndorf\n | Fußzeile_align=center\n | Breite=160\n | align=center\n}}\n\n== Literatur ==\n* Johannes Heinrich Müller, Jacobus Reimers: ''Vor- und frühgeschichtliche Alterthümer der Provinz Hannover.'' Schulze, Hannover 1893, S. 141 ([https://publikationsserver.tu-braunschweig.de/servlets/MCRFileNodeServlet/digibib_derivate_00006932/Ba-875.pdf PDF; 25,0 MB]).\n* [[Ernst Sprockhoff]]: ''Atlas der Megalithgräber Deutschlands. Teil 3: Niedersachsen – Westfalen.'' Rudolf-Habelt Verlag, Bonn 1975, ISBN 3-7749-1326-9, S. 48.\n\n== Weblinks ==\n* {{commonscat|Großsteingrab Ahndorf}}\n\n\n{{SORTIERUNG:Grosssteingrab Ahndorf}}\n[[Kategorie:Großsteingrab im Landkreis Lüneburg|Ahndorf]]\n[[Kategorie:Boitze]]\n[[Kategorie:Trichterbecherkultur|Ahndorf]]"
+    }
+}
