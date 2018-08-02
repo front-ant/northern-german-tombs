@@ -3,6 +3,23 @@ import './App.css';
 import MapOfTombs from './MapOfTombs';
 
 class App extends Component {
+  componentDidMount() {
+    // grab list of tombs from Wikipedia
+    fetch(
+      'https://de.wikipedia.org/w/api.php?action=query&cmlimit=100&list=categorymembers&cmpageid=9640102&origin=*&format=json'
+    )
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        let listOfEntries = data.query.categorymembers;
+        let listOfEntryTitles = listOfEntries.map(entry => {
+          return entry.title;
+        });
+        console.log(listOfEntryTitles);
+      });
+  }
+
   render() {
     return (
       <div className="App">
