@@ -8,8 +8,10 @@ class App extends Component {
     tombs: []
   };
   async componentDidMount() {
-    const tombs = await APICalls.getListOfTombs();
-    APICalls.getDetailsOfTombs(tombs);
+    const listOfTombs = await APICalls.getListOfTombs();
+    const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
+    this.setState({tombs});
+    console.log(this.state.tombs);
   }
 
   render() {
