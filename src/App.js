@@ -1,36 +1,27 @@
 import React, {Component} from 'react';
 import './App.css';
 import MapOfTombs from './MapOfTombs';
+import * as APICalls from './APICalls';
 
 class App extends Component {
-  componentDidMount() {
-    let listOfTombObjects = [];
-
-    // grab list of tombs from Wikipedia
-    fetch(
-      'https://de.wikipedia.org/w/api.php?action=query&cmlimit=100&list=categorymembers&cmpageid=9640102&origin=*&format=json'
-    )
-      .then(results => {
-        return results.json();
-      })
-      .then(data => {
-        let listOfEntries = data.query.categorymembers;
-        let listOfEntryTitles = listOfEntries.map(entry => {
-          // replace spaces in titles with underscores
-          return entry.title.split(' ').join('_');
-        });
-        // Make an API request for each title in the list to retrieve detailed information
-        listOfEntryTitles.forEach(title => {
-          fetch(`https://de.wikipedia.org/api/rest_v1/page/summary/${title}`)
-            .then(results => {
-              return results.json();
-            })
-            .then(data => {
-              listOfTombObjects.push(data);
-              console.log(listOfTombObjects);
-            });
-        });
-      });
+  state = {
+    tombs: []
+  };
+  async componentDidMount() {
+    const tombs = await APICalls.getListOfTombs();
+    this.setState({tombs});
+    console.log(this.state.tombs);
+    // // Make an API request for each title in the list to retrieve detailed information
+    // listOfEntryTitles.forEach(title => {
+    //   fetch(`https://de.wikipedia.org/api/rest_v1/page/summary/${title}`)
+    //     .then(results => {
+    //       return results.json();
+    //     })
+    //     .then(data => {
+    //       listOfTombObjects.push(data);
+    //       console.log(listOfTombObjects);
+    //     });
+    // });
   }
 
   render() {
