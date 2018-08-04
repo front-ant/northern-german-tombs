@@ -5,13 +5,21 @@ import * as APICalls from './APICalls';
 
 class App extends Component {
   state = {
-    tombs: []
+    tombs: [],
+    coordinates: []
   };
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
     const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
-    this.setState({tombs});
-    console.log(this.state.tombs);
+    const filteredTombs = tombs.filter(tomb => tomb.coordinates);
+    this.setState({tombs: filteredTombs});
+    const coordinates = filteredTombs.map(t => t.coordinates).map(tomb => {
+      tomb.lng = tomb.lon;
+      delete tomb.lon;
+      return tomb;
+    });
+    this.setState({coordinates});
+    console.log(this.state.coordinates);
   }
 
   render() {
@@ -22,6 +30,7 @@ class App extends Component {
           loadingElement={<div style={{height: `100%`}} />}
           containerElement={<div style={{height: `600px`, width: `100%`}} />}
           mapElement={<div style={{height: `100%`}} />}
+          tombs={this.state.tombs}
         />
       </div>
     );
