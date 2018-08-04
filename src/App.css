@@ -11,3 +11,15 @@
   height: 600px;
   overflow-y: scroll;
 }
+
+.tombs-list ul {
+  list-style: none;
+}
+
+.tombs-list ul li::before {
+  content: '\200B';
+}
+
+.info-text.hidden {
+  display: none;
+}

@@ -14,12 +14,20 @@ class App extends Component {
     this.setState({tombs});
   }
 
+  toggleInfos(target) {
+    target.nextSibling.classList.toggle('hidden');
+    console.log(target.nextSibling.classList);
+  }
+
   render() {
     return (
       <div className="App">
-        <ListView tombs={this.state.tombs} />
+        <ListView tombs={this.state.tombs} handleClick={this.toggleInfos} />
 
-        <MapContainer tombs={this.state.tombs} />
+        <MapContainer
+          tombs={this.state.tombs}
+          activeTomb={this.state.activeTomb}
+        />
       </div>
     );
   }
