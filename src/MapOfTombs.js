@@ -8,6 +8,7 @@ import {
 
 const MapOfTombs = withScriptjs(
   withGoogleMap(props => {
+    console.log(props.coordinates);
     let markers = <Marker position={{lat: 53.1572121, lng: 10.2079295}} />;
 
     return (
