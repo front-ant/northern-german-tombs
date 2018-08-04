@@ -5,7 +5,7 @@ class MapContainer extends Component {
   state = {receivedData: false};
 
   componentDidUpdate(oldProps) {
-    if (this.props.coordinates !== oldProps.coordinates) {
+    if (this.props !== oldProps) {
       this.setState({receivedData: true});
     }
   }
@@ -20,12 +20,12 @@ class MapContainer extends Component {
             loadingElement={<div style={{height: `100%`}} />}
             containerElement={<div style={{height: `600px`, width: `100%`}} />}
             mapElement={<div style={{height: `100%`}} />}
-            coordinates={this.props.coordinates}
+            coordinates={this.props.tombs.map(t => t.coordinates)}
           />
         </div>
       );
     } else {
-      return null;
+      return <span>Please wait, fetching some tombs...</span>;
     }
   }
 }

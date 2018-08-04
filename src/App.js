@@ -5,20 +5,18 @@ import MapContainer from './MapContainer';
 
 class App extends Component {
   state = {
-    tombs: [],
-    coordinates: []
+    tombs: []
   };
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
     const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
-    const coordinates = tombs.map(tomb => tomb.coordinates);
-    this.setState({coordinates});
+    this.setState({tombs});
   }
 
   render() {
     return (
       <div className="App">
-        <MapContainer coordinates={this.state.coordinates} />
+        <MapContainer tombs={this.state.tombs} />
       </div>
     );
   }
