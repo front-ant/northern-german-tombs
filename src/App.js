@@ -21,15 +21,19 @@ class App extends Component {
   }
 
   toggleInfos(target, id) {
-    target.nextSibling.classList.toggle('hidden');
-    let activeTomb = this.state.tombs.filter(t => t.tid === id);
-    this.setState({activeTomb});
+    const activeTomb = this.state.tombs.filter(t => t.tid === id);
+    const [firstActiveTomb] = activeTomb;
+    this.setState({activeTomb: firstActiveTomb});
   }
 
   render() {
     return (
       <div className="App">
-        <ListView tombs={this.state.tombs} handleClick={this.toggleInfos} />
+        <ListView
+          tombs={this.state.tombs}
+          handleClick={this.toggleInfos}
+          activeTomb={this.state.activeTomb}
+        />
 
         <MapContainer
           tombs={this.state.tombs}

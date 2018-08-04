@@ -10,7 +10,9 @@ const ListView = props => {
               onClick={event => props.handleClick(event.target, tomb.tid)}>
               {tomb.title}
             </button>
-            <p className="info-text hidden">{tomb.extract}</p>
+            {props.activeTomb.tid === tomb.tid && (
+              <p className="info-text">{tomb.extract}</p>
+            )}
           </li>
         ))}
       </ul>

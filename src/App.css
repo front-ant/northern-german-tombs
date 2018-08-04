@@ -19,7 +19,3 @@
 .tombs-list ul li::before {
   content: '\200B';
 }
-
-.info-text.hidden {
-  display: none;
-}
