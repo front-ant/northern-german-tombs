@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import * as APICalls from './APICalls';
 import MapContainer from './MapContainer';
+import ListView from './ListView';
 
 class App extends Component {
   state = {
@@ -16,6 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ListView tombs={this.state.tombs} />
+
         <MapContainer tombs={this.state.tombs} />
       </div>
     );
