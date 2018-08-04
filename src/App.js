@@ -6,7 +6,8 @@ import ListView from './ListView';
 
 class App extends Component {
   state = {
-    tombs: []
+    tombs: [],
+    activeTomb: {}
   };
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();

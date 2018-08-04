@@ -13,6 +13,10 @@ const MapOfTombs = withScriptjs(
         {props.coordinates.map(coord => (
           <Marker position={coord} key={coord.lat} />
         ))}
+        <Marker
+          position={props.activeTomb.coordinates}
+          animation={window.google.maps.Animation.BOUNCE}
+        />
       </GoogleMap>
     );
   })

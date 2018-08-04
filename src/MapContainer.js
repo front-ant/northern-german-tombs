@@ -21,6 +21,7 @@ class MapContainer extends Component {
             containerElement={<div style={{height: `600px`, width: `100%`}} />}
             mapElement={<div style={{height: `100%`}} />}
             coordinates={this.props.tombs.map(t => t.coordinates)}
+            activeTomb={this.props.activeTomb}
           />
         </div>
       );
