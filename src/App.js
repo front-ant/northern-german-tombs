@@ -5,19 +5,25 @@ import MapContainer from './MapContainer';
 import ListView from './ListView';
 
 class App extends Component {
-  state = {
-    tombs: [],
-    activeTomb: {}
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      tombs: [],
+      activeTomb: []
+    };
+    // in ES6, _this_ is not autobound to non React methods!
+    this.toggleInfos = this.toggleInfos.bind(this);
+  }
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
     const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
     this.setState({tombs});
   }
 
-  toggleInfos(target) {
+  toggleInfos(target, id) {
     target.nextSibling.classList.toggle('hidden');
-    console.log(target.nextSibling.classList);
+    let activeTomb = this.state.tombs.filter(t => t.tid === id);
+    this.setState({activeTomb});
   }
 
   render() {

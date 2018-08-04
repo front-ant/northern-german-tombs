@@ -6,7 +6,8 @@ const ListView = props => {
       <ul>
         {props.tombs.map(tomb => (
           <li key={tomb.tid}>
-            <button onClick={event => props.handleClick(event.target)}>
+            <button
+              onClick={event => props.handleClick(event.target, tomb.tid)}>
               {tomb.title}
             </button>
             <p className="info-text hidden">{tomb.extract}</p>
