@@ -9,6 +9,7 @@ export const getListOfTombs = () =>
 
 export const getDetailsOfTombs = async array => {
   let listOfTombObjects = [];
+  // wait until all API requests have gone through, only then return the array
   await Promise.all(
     array.map(title =>
       fetch(`https://de.wikipedia.org/api/rest_v1/page/summary/${title}`).then(
@@ -16,5 +17,11 @@ export const getDetailsOfTombs = async array => {
       )
     )
   );
-  return listOfTombObjects;
+  // Return only tomb object that have a coordinates property
+  // and convert into Google-readable latlng literals
+  return listOfTombObjects.filter(tomb => tomb.coordinates).map(t => {
+    t.coordinates.lng = t.coordinates.lon;
+    delete t.coordinates.lon;
+    return t;
+  });
 };

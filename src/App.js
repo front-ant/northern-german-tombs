@@ -11,12 +11,7 @@ class App extends Component {
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
     const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
-    const filteredTombs = tombs.filter(tomb => tomb.coordinates);
-    const coordinates = filteredTombs.map(t => t.coordinates).map(tomb => {
-      tomb.lng = tomb.lon;
-      delete tomb.lon;
-      return tomb;
-    });
+    const coordinates = tombs.map(tomb => tomb.coordinates);
     this.setState({coordinates});
   }
 
