@@ -19,3 +19,8 @@
 .tombs-list ul li::before {
   content: '\200B';
 }
+
+.info-thumbnail {
+  height: 150 px;
+  width: 150 px;
+}

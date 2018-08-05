@@ -3,7 +3,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from 'react-google-maps';
 
 const MapOfTombs = withScriptjs(
@@ -20,9 +21,19 @@ const MapOfTombs = withScriptjs(
         <Marker
           key={props.activeTomb.tid}
           position={props.activeTomb.coordinates}
-          animation={window.google.maps.Animation.BOUNCE}
-        />
-        )
+          animation={window.google.maps.Animation.BOUNCE}>
+          <InfoWindow>
+            <div className="info-window">
+              <div className="info-window-title">{props.activeTomb.title}</div>
+              {props.activeTomb.thumbnail !== undefined && (
+                <img
+                  className="info-thumbnail"
+                  src={props.activeTomb.thumbnail.source}
+                />
+              )}
+            </div>
+          </InfoWindow>
+        </Marker>
       </GoogleMap>
     );
   })

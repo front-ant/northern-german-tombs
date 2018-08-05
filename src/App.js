@@ -24,6 +24,7 @@ class App extends Component {
     const activeTomb = this.state.tombs.filter(t => t.tid === id);
     const [firstActiveTomb] = activeTomb;
     this.setState({activeTomb: firstActiveTomb});
+    console.log(this.state.activeTomb.thumbnail.source);
   }
 
   render() {
