@@ -9,28 +9,34 @@ import {
 
 const MapOfTombs = withScriptjs(
   withGoogleMap(props => {
+    const {activeTomb, tombs, handleClick} = props;
     return (
       <GoogleMap defaultZoom={10} center={{lat: 53.1572121, lng: 10.2079295}}>
-        {props.tombs.map(t => (
+        {tombs.map(t => (
           <Marker
             position={t.coordinates}
             key={t.tid}
-            onClick={event => props.handleClick(event.target, t.tid)}
+            onClick={event => handleClick(event.target, t.tid)}
           />
         ))}
         <Marker
-          key={props.activeTomb.tid}
-          position={props.activeTomb.coordinates}
+          key={activeTomb.tid}
+          position={activeTomb.coordinates}
           animation={window.google.maps.Animation.BOUNCE}>
           <InfoWindow>
             <div className="info-window">
-              <div className="info-window-title">{props.activeTomb.title}</div>
-              {props.activeTomb.thumbnail !== undefined && (
+              <div className="info-window-title">{activeTomb.title}</div>
+              // Only show images in InfoWindow that are not the generic
+              placholder
+              {activeTomb.thumbnail === undefined ? null : activeTomb.thumbnail
+                .source !==
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg' ? (
                 <img
                   className="info-thumbnail"
-                  src={props.activeTomb.thumbnail.source}
+                  src={activeTomb.thumbnail.source}
+                  alt={activeTomb.title}
                 />
-              )}
+              ) : null}
             </div>
           </InfoWindow>
         </Marker>
