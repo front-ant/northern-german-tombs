@@ -20,8 +20,9 @@ class MapContainer extends Component {
             loadingElement={<div style={{height: `100%`}} />}
             containerElement={<div style={{height: `600px`, width: `100%`}} />}
             mapElement={<div style={{height: `100%`}} />}
-            coordinates={this.props.tombs.map(t => t.coordinates)}
+            tombs={this.props.tombs}
             activeTomb={this.props.activeTomb}
+            handleClick={this.props.handleClick}
           />
         </div>
       );

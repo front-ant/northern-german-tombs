@@ -38,6 +38,7 @@ class App extends Component {
         <MapContainer
           tombs={this.state.tombs}
           activeTomb={this.state.activeTomb}
+          handleClick={this.toggleInfos}
         />
       </div>
     );
