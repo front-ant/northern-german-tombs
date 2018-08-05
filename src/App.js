@@ -23,7 +23,11 @@ class App extends Component {
   toggleInfos(target, id) {
     const activeTomb = this.state.tombs.filter(t => t.tid === id);
     const [firstActiveTomb] = activeTomb;
-    this.setState({activeTomb: firstActiveTomb});
+    if (firstActiveTomb !== this.state.activeTomb) {
+      this.setState({activeTomb: firstActiveTomb});
+    } else {
+      this.setState({activeTomb: []});
+    }
   }
 
   render() {
