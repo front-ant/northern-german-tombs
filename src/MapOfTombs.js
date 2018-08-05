@@ -25,9 +25,15 @@ const MapOfTombs = withScriptjs(
           animation={window.google.maps.Animation.BOUNCE}>
           <InfoWindow>
             <div className="info-window">
-              <div className="info-window-title">{activeTomb.title}</div>
-              // Only show images in InfoWindow that are not the generic
-              placholder
+              {activeTomb.content_urls !== undefined && (
+                <a
+                  className="info-window-title"
+                  target="_blank"
+                  href={activeTomb.content_urls.desktop.page}>
+                  {' '}
+                  {activeTomb.title}
+                </a>
+              )}
               {activeTomb.thumbnail === undefined ? null : activeTomb.thumbnail
                 .source !==
               'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg' ? (
