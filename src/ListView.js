@@ -7,6 +7,7 @@ const ListView = props => {
         {props.tombs.map(tomb => (
           <li key={tomb.tid}>
             <button
+              className="list-button"
               onClick={event => props.handleClick(event.target, tomb.tid)}>
               {tomb.title}
             </button>

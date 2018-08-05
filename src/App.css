@@ -10,10 +10,17 @@
   width: 20%;
   height: 600px;
   overflow-y: scroll;
+  display: flex;
+  overflow-x: hidden;
 }
 
 .tombs-list ul {
   list-style: none;
+  padding-left: 0;
+}
+
+.list-button {
+  width: 100%;
 }
 
 .tombs-list ul li::before {
@@ -21,6 +28,11 @@
 }
 
 .info-thumbnail {
-  height: 150 px;
-  width: 150 px;
+  height: 200px;
+}
+.info-with-img {
+  display: flex;
+}
+.info-text {
+  font-size: 12px;
 }
