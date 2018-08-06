@@ -12,7 +12,9 @@ class App extends Component {
     this.state = {
       tombs: [],
       activeTomb: [],
-      showingTombs: []
+      showingTombs: [],
+      inputFilteredTombs: [],
+      checkboxFilteredTombs: []
     };
     // in ES6, _this_ is not autobound to non React methods!
     this.toggleInfos = this.toggleInfos.bind(this);
@@ -40,29 +42,78 @@ class App extends Component {
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
       this.setState(state => ({
-        showingTombs: state.tombs.filter(tomb => match.test(tomb.title))
+        inputFilteredTombs: state.tombs.filter(tomb => match.test(tomb.title))
       }));
+    } else {
+      this.setState({showingTombs: this.state.tombs});
     }
   }
 
   filterImg(checkedValue) {
     if (checkedValue) {
       this.setState(state => ({
-        showingTombs: state.showingTombs.filter(
+        checkboxFilteredTombs: this.state.tombs.filter(
           tomb =>
             tomb.thumbnail.source !==
             'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg'
         )
       }));
     }
+    if (!checkedValue) {
+      this.setState({checkboxFilteredTombs: []});
+    }
   }
 
+  calculateTombsToShow = (arr1, arr2) => {
+    if (arr1.length > 0 && arr2.length === 0) {
+      return arr1;
+    }
+    if (arr1.length === 0 && arr2.length > 0) {
+      return arr2;
+    }
+    if (arr1.length > 0 && arr2.length > 0 && arr1.length > arr2.length) {
+      let findCommonMembers = arr1.concat(arr2);
+      if (findCommonMembers) {
+        return findCommonMembers;
+      } else {
+        return [];
+      }
+    }
+    if (arr1.length > 0 && arr2.length > 0 && arr1.length < arr2.length) {
+      let findCommonMembers = arr1.concat(arr2);
+      if (findCommonMembers) {
+        return findCommonMembers;
+      } else {
+        return this.state.showingTombs;
+      }
+    }
+    if (
+      arr1.length === 0 &&
+      arr2.length === 0 &&
+      this.state.showingTombs.length > 0
+    ) {
+      return this.state.showingTombs;
+    } else {
+      return [];
+    }
+  };
+
   render() {
+    let showingTombs;
+    if (this.state.inputFilteredTombs || this.state.checkboxFilteredTombs) {
+      showingTombs = this.calculateTombsToShow(
+        this.state.inputFilteredTombs,
+        this.state.checkboxFilteredTombs
+      );
+    } else {
+      showingTombs = this.state.showingTombs;
+    }
+
     return (
       <div className="App">
         <div className="List">
           <ListView
-            tombs={this.state.showingTombs}
+            tombs={showingTombs}
             handleClick={this.toggleInfos}
             activeTomb={this.state.activeTomb}
           />
@@ -74,7 +125,7 @@ class App extends Component {
           />
         </div>
         <MapContainer
-          tombs={this.state.showingTombs}
+          tombs={showingTombs}
           activeTomb={this.state.activeTomb}
           handleClick={this.toggleInfos}
         />
