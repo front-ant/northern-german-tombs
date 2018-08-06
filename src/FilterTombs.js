@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 
 class FilterTombs extends Component {
-  state = {input: ''};
+  state = {query: ''};
+
+  updateQuery = query => {
+    this.setState({query: query.trim()});
+    this.props.handleInput(this.state.query);
+  };
 
   render() {
     return (
@@ -11,6 +16,7 @@ class FilterTombs extends Component {
           type="text"
           placeholder="Search for a specific place in Lüneburg County"
           value={this.state.input}
+          onChange={event => this.updateQuery(event.target.value)}
         />
         <div className="checkboxes">
           <input
