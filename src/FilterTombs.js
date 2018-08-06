@@ -11,11 +11,13 @@ class FilterTombs extends Component {
     this.props.handleInput(event.target.value);
   };
 
-  handleCheck = check => {
-    if (check) {
+  handleCheck = event => {
+    if (event.target.checked) {
       this.setState({filterImg: true});
+      this.props.handleCheck(true);
     } else {
       this.setState({filterImg: false});
+      this.props.handleCheck(false);
     }
   };
 
@@ -34,7 +36,8 @@ class FilterTombs extends Component {
             className="filter-checkbox"
             type="checkbox"
             name="Filter images"
-            value={this.state.filterImg}
+            checked={this.state.filterImg}
+            onChange={this.handleCheck}
           />
           <span className="checkbox-text">Only show tombs with images</span>
         </div>

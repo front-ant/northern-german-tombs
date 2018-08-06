@@ -17,6 +17,7 @@ class App extends Component {
     // in ES6, _this_ is not autobound to non React methods!
     this.toggleInfos = this.toggleInfos.bind(this);
     this.filterPlaces = this.filterPlaces.bind(this);
+    this.filterImg = this.filterImg.bind(this);
   }
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
@@ -36,10 +37,24 @@ class App extends Component {
   }
 
   filterPlaces(query) {
-    const match = new RegExp(escapeRegExp(query), 'i');
-    this.setState(state => ({
-      showingTombs: state.tombs.filter(tomb => match.test(tomb.title))
-    }));
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i');
+      this.setState(state => ({
+        showingTombs: state.tombs.filter(tomb => match.test(tomb.title))
+      }));
+    }
+  }
+
+  filterImg(checkedValue) {
+    if (checkedValue) {
+      this.setState(state => ({
+        showingTombs: state.showingTombs.filter(
+          tomb =>
+            tomb.thumbnail.source !==
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg'
+        )
+      }));
+    }
   }
 
   render() {
@@ -53,7 +68,10 @@ class App extends Component {
           />
         </div>
         <div className="Filter">
-          <FilterTombs handleInput={this.filterPlaces} />
+          <FilterTombs
+            handleInput={this.filterPlaces}
+            handleCheck={this.filterImg}
+          />
         </div>
         <MapContainer
           tombs={this.state.showingTombs}
