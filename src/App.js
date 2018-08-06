@@ -3,6 +3,7 @@ import './App.css';
 import * as APICalls from './APICalls';
 import MapContainer from './MapContainer';
 import ListView from './ListView';
+import FilterTombs from './FilterTombs';
 
 class App extends Component {
   constructor(props) {
@@ -33,12 +34,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListView
-          tombs={this.state.tombs}
-          handleClick={this.toggleInfos}
-          activeTomb={this.state.activeTomb}
-        />
-
+        <div className="List">
+          <ListView
+            tombs={this.state.tombs}
+            handleClick={this.toggleInfos}
+            activeTomb={this.state.activeTomb}
+          />
+        </div>
+        <div className="Filter">
+          <FilterTombs />
+        </div>
         <MapContainer
           tombs={this.state.tombs}
           activeTomb={this.state.activeTomb}

@@ -6,7 +6,19 @@
   width: 80%;
 }
 
-.tombs-list {
+.Filter {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 33%;
+}
+
+.text-filter {
+  width: 100%;
+}
+
+.List {
   width: 20%;
   height: 600px;
   overflow-y: scroll;
@@ -34,5 +46,13 @@
   display: flex;
 }
 .info-text {
+  font-size: 12px;
+}
+
+.checkboxes {
+  background-color: white;
+}
+
+.checkbox-text {
   font-size: 12px;
 }
