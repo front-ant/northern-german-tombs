@@ -1,11 +1,22 @@
 import React, {Component} from 'react';
 
 class FilterTombs extends Component {
-  state = {query: ''};
+  state = {
+    input: '',
+    filterImg: false
+  };
 
-  updateQuery = query => {
-    this.setState({query: query.trim()});
-    this.props.handleInput(this.state.query);
+  handleChange = event => {
+    this.setState({input: event.target.value});
+    this.props.handleInput(event.target.value);
+  };
+
+  handleCheck = check => {
+    if (check) {
+      this.setState({filterImg: true});
+    } else {
+      this.setState({filterImg: false});
+    }
   };
 
   render() {
@@ -16,25 +27,16 @@ class FilterTombs extends Component {
           type="text"
           placeholder="Search for a specific place in Lüneburg County"
           value={this.state.input}
-          onChange={event => this.updateQuery(event.target.value)}
+          onChange={this.handleChange}
         />
         <div className="checkboxes">
           <input
             className="filter-checkbox"
             type="checkbox"
             name="Filter images"
+            value={this.state.filterImg}
           />
           <span className="checkbox-text">Only show tombs with images</span>
-        </div>
-        <div className="checkboxes">
-          <input
-            className="english-checkbox"
-            type="checkbox"
-            name="Filter English texts"
-          />
-          <span className="checkbox-text">
-            Only show tombs with descriptions in English
-          </span>
         </div>
       </div>
     );

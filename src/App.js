@@ -36,14 +36,10 @@ class App extends Component {
   }
 
   filterPlaces(query) {
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i');
-      let showingTombs = this.state.tombs.filter(tomb =>
-        match.test(tomb.title)
-      );
-
-      this.setState({showingTombs});
-    }
+    const match = new RegExp(escapeRegExp(query), 'i');
+    this.setState(state => ({
+      showingTombs: state.tombs.filter(tomb => match.test(tomb.title))
+    }));
   }
 
   render() {
