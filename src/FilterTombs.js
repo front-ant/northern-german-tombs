@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 
 class FilterTombs extends Component {
-  state = {
-    input: '',
-    filterImg: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      filterImg: false
+    };
+    this.handleCheck = this.handleCheck.bind(this);
+    this.handleInput = this.handleChange.bind(this);
+  }
 
   handleChange = event => {
     this.setState({input: event.target.value});
@@ -12,13 +17,8 @@ class FilterTombs extends Component {
   };
 
   handleCheck = event => {
-    if (event.target.checked) {
-      this.setState({filterImg: true});
-      this.props.handleCheck(true);
-    } else {
-      this.setState({filterImg: false});
-      this.props.handleCheck(false);
-    }
+    this.setState({filterImg: event.target.checked});
+    this.props.handleCheck(event.target.checked);
   };
 
   render() {
