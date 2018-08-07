@@ -15,7 +15,8 @@ class App extends Component {
       activeTomb: [],
       showingTombs: [],
       inputFilteredTombs: [],
-      checkboxFilteredTombs: []
+      checkboxFilteredTombs: [],
+      noResults: false
     };
     // in ES6, _this_ is not autobound to non React methods!
     this.toggleInfos = this.toggleInfos.bind(this);
@@ -40,15 +41,18 @@ class App extends Component {
   }
 
   filterPlaces(query) {
+    let inputFilteredTombs;
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i');
-      this.setState(state => ({
-        inputFilteredTombs: state.tombs.filter(tomb => match.test(tomb.title))
-      }));
-    } else {
-      this.setState({inputFilteredTombs: []});
+      inputFilteredTombs = this.state.tombs.filter(tomb =>
+        match.test(tomb.title)
+      );
+      if (inputFilteredTombs.length === 0) {
+        this.setState({inputFilteredTombs: [], noResults: true});
+      } else {
+        this.setState({inputFilteredTombs});
+      }
     }
-    console.log(this.state.inputFilteredTombs);
   }
 
   filterImg(checkedValue) {
@@ -66,33 +70,29 @@ class App extends Component {
   }
 
   render() {
+    // calculate tombs to show based on filter arrays in state
+
+    const {inputFilteredTombs, checkboxFilteredTombs} = this.state;
     let showingTombs;
-    if (
-      this.state.inputFilteredTombs.length === 0 &&
-      this.state.checkboxFilteredTombs.length > 0
-    ) {
-      showingTombs = this.state.checkboxFilteredTombs;
+    if (inputFilteredTombs.length === 0 && checkboxFilteredTombs.length > 0) {
+      showingTombs = checkboxFilteredTombs;
     }
-    if (
-      this.state.checkboxFilteredTombs.length === 0 &&
-      this.state.inputFilteredTombs.length === 0
-    ) {
+    if (checkboxFilteredTombs.length === 0 && inputFilteredTombs.length === 0) {
       showingTombs = this.state.showingTombs;
     }
-    if (
-      this.state.inputFilteredTombs.length > 0 &&
-      this.state.checkboxFilteredTombs.length > 0
-    ) {
-      showingTombs = intersection(
-        this.state.inputFilteredTombs,
-        this.state.checkboxFilteredTombs
-      );
+    if (inputFilteredTombs.length > 0 && checkboxFilteredTombs.length > 0) {
+      showingTombs = intersection(inputFilteredTombs, checkboxFilteredTombs);
     }
+    if (checkboxFilteredTombs.length === 0 && inputFilteredTombs.length > 0) {
+      showingTombs = inputFilteredTombs;
+    }
+    // don't display any tombs if search was unsuccessful
     if (
-      this.state.checkboxFilteredTombs.length === 0 &&
-      this.state.inputFilteredTombs.length > 0
+      inputFilteredTombs.length === 0 &&
+      checkboxFilteredTombs.length === 0 &&
+      this.state.noResults
     ) {
-      showingTombs = this.state.inputFilteredTombs;
+      showingTombs = [];
     }
 
     return (
