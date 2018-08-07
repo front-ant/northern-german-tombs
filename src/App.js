@@ -22,6 +22,7 @@ class App extends Component {
     this.toggleInfos = this.toggleInfos.bind(this);
     this.filterPlaces = this.filterPlaces.bind(this);
     this.filterImg = this.filterImg.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
   async componentDidMount() {
     const listOfTombs = await APICalls.getListOfTombs();
@@ -69,6 +70,12 @@ class App extends Component {
     this.setState({checkboxFilteredTombs});
   }
 
+  toggleMenu(event) {
+    event.preventDefault();
+    let hiddenMenu = document.querySelector('.List');
+    hiddenMenu.classList.toggle('visible');
+  }
+
   render() {
     // calculate tombs to show based on filter arrays in state
 
@@ -97,6 +104,11 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="toggle-menu">
+          <button className="hamburger-menu" onClick={this.toggleMenu}>
+            Menu
+          </button>
+        </div>
         <div className="List">
           <ListView
             tombs={showingTombs}
