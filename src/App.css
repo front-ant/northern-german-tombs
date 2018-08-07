@@ -11,7 +11,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 33%;
+  width: 50%;
 }
 
 .text-filter {
@@ -20,7 +20,7 @@
 
 .List {
   width: 20%;
-  height: 600px;
+  height: 100vh;
   overflow-y: scroll;
   display: flex;
   overflow-x: hidden;
@@ -55,4 +55,53 @@
 
 .checkbox-text {
   font-size: 12px;
+}
+
+input.filter-checkbox {
+  padding: 30px;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 500px) {
+  .List {
+    transition: left 0.5s ease;
+    left: -1000px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 40%;
+  }
+  .List.visible {
+    left: 0;
+  }
+  .Map {
+    width: 100%;
+  }
+
+  .Filter {
+    width: 80%;
+  }
+
+  .text-filter {
+    height: 30px;
+  }
+  #images-checkbox {
+    height: 30px;
+    width: 30px;
+  }
+  .checkbox-text {
+    font-size: 17px;
+  }
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    height: 30px;
+  }
 }
