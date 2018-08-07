@@ -2,7 +2,7 @@ import React from 'react';
 
 const ListView = props => {
   return (
-    <div className="tombs-list">
+    <div className="tombs-list" lang="de">
       <ul>
         {props.tombs.map(tomb => (
           <li key={tomb.tid}>

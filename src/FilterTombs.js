@@ -33,13 +33,15 @@ class FilterTombs extends Component {
         />
         <div className="checkboxes">
           <input
-            className="filter-checkbox"
             type="checkbox"
             name="Filter images"
             checked={this.state.filterImg}
             onChange={this.handleCheck}
+            id="images-checkbox"
           />
-          <span className="checkbox-text">Only show tombs with images</span>
+          <label htmlFor="images-checkbox" className="checkbox-text">
+            Only show tombs with images
+          </label>
         </div>
       </div>
     );
