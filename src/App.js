@@ -73,7 +73,9 @@ class App extends Component {
   toggleMenu(event) {
     event.preventDefault();
     let hiddenMenu = document.querySelector('.List');
-    hiddenMenu.classList.toggle('visible');
+    let mapField = document.querySelector('.Map');
+    hiddenMenu.classList.toggle('enter-menu');
+    mapField.classList.toggle('enter-menu');
   }
 
   render() {
@@ -104,29 +106,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="toggle-menu">
+        <div className="toggle-menu" tabindex="-1">
           <button className="hamburger-menu" onClick={this.toggleMenu}>
             Menu
           </button>
         </div>
-        <div className="List">
-          <ListView
+        <main>
+          <div className="List">
+            <ListView
+              tombs={showingTombs}
+              handleClick={this.toggleInfos}
+              activeTomb={this.state.activeTomb}
+            />
+          </div>
+          <div className="Filter">
+            <FilterTombs
+              handleInput={this.filterPlaces}
+              handleCheck={this.filterImg}
+            />
+          </div>
+          <MapContainer
             tombs={showingTombs}
-            handleClick={this.toggleInfos}
             activeTomb={this.state.activeTomb}
+            handleClick={this.toggleInfos}
           />
-        </div>
-        <div className="Filter">
-          <FilterTombs
-            handleInput={this.filterPlaces}
-            handleCheck={this.filterImg}
-          />
-        </div>
-        <MapContainer
-          tombs={showingTombs}
-          activeTomb={this.state.activeTomb}
-          handleClick={this.toggleInfos}
-        />
+        </main>
       </div>
     );
   }

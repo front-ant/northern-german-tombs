@@ -1,9 +1,15 @@
-.App {
+main {
   display: flex;
+}
+
+.skip-link {
+  position: absolute;
+  left: -1000px;
 }
 
 .Map {
   width: 80%;
+  height: 100vh;
 }
 
 .Filter {
@@ -39,6 +45,10 @@
   content: '\200B';
 }
 
+.info-text {
+  background-color: white;
+}
+
 .info-thumbnail {
   height: 200px;
 }
@@ -69,22 +79,31 @@ input.filter-checkbox {
 
 @media only screen and (max-width: 500px) {
   .List {
-    transition: left 0.5s ease;
     left: -1000px;
     position: fixed;
-    top: 0;
+    top: 30px;
     z-index: 1;
-    width: 40%;
+    width: 30%;
   }
-  .List.visible {
+  .List.enter-menu {
     left: 0;
   }
   .Map {
     width: 100%;
   }
 
+  .Map.enter-menu {
+    width: 70%;
+    position: absolute;
+    right: 0;
+  }
+
+  .info-thumbnail {
+    max-height: 150px;
+  }
+
   .Filter {
-    width: 80%;
+    width: 70%;
   }
 
   .text-filter {
