@@ -2,7 +2,11 @@ import React from 'react';
 
 const ListView = props => {
   return (
-    <div className="tombs-list" lang="de">
+    <section className="tombs-list" lang="de">
+      <h2 tabIndex="1">List of Tombs</h2>
+      <a className="skip-link" href="#filter-bar">
+        Skip to Filter
+      </a>
       <ul>
         {props.tombs.map(tomb => (
           <li key={tomb.tid}>
@@ -12,12 +16,22 @@ const ListView = props => {
               {tomb.title}
             </button>
             {props.activeTomb.tid === tomb.tid && (
-              <p className="info-text">{tomb.extract}</p>
+              <div className="expanded-info">
+                <p className="info-text" tabIndex="0">
+                  {tomb.extract}
+                </p>
+                <a
+                  className="skip-link"
+                  href={tomb.content_urls.desktop.page}
+                  target="_blank">
+                  Skip to Wikipedia Page
+                </a>
+              </div>
             )}
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 export default ListView;

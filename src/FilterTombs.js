@@ -23,14 +23,16 @@ class FilterTombs extends Component {
 
   render() {
     return (
-      <div className="filter-bar">
+      <section id="filter-bar">
         <input
+          aria-label="Search Places"
           className="text-filter"
           type="text"
           placeholder="Search for a specific place in Lüneburg County"
           value={this.state.input}
           onChange={this.handleChange}
         />
+
         <div className="checkboxes">
           <input
             type="checkbox"
@@ -43,7 +45,7 @@ class FilterTombs extends Component {
             Only show tombs with images
           </label>
         </div>
-      </div>
+      </section>
     );
   }
 }
