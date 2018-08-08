@@ -3,7 +3,9 @@ import React from 'react';
 const ListView = props => {
   return (
     <section className="tombs-list" lang="de">
-      <h2 tabIndex="1">List of Tombs</h2>
+      <h1 id="page-heading" tabIndex="0">
+        Map of Megalithic Tombs in Lüneburg County, Germany
+      </h1>
       <a className="skip-link" href="#filter-bar">
         Skip to Filter
       </a>

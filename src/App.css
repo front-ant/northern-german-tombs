@@ -1,5 +1,16 @@
+/* THE BASICS */
+
+body {
+  overflow-x: hidden;
+}
+
 main {
   display: flex;
+}
+
+#page-heading {
+  font-size: 16px;
+  text-align: center;
 }
 
 .skip-link {
@@ -7,10 +18,28 @@ main {
   left: -1000px;
 }
 
+.hamburger-menu {
+  display: none;
+}
+
+/* MAP */
+
 .Map {
   width: 80%;
   height: 100vh;
 }
+
+.info-thumbnail {
+  height: 200px;
+}
+.info-with-img {
+  display: flex;
+}
+.info-text {
+  font-size: 12px;
+}
+
+/* FILTERS */
 
 .Filter {
   z-index: 10;
@@ -23,6 +52,20 @@ main {
 .text-filter {
   width: 100%;
 }
+
+.checkboxes {
+  background-color: white;
+}
+
+.checkbox-text {
+  font-size: 12px;
+}
+
+input.filter-checkbox {
+  padding: 30px;
+}
+
+/* LIST VIEW */
 
 .List {
   width: 20%;
@@ -39,6 +82,7 @@ main {
 
 .list-button {
   width: 100%;
+  border: none;
 }
 
 .tombs-list ul li::before {
@@ -49,35 +93,21 @@ main {
   background-color: white;
 }
 
-.info-thumbnail {
-  height: 200px;
-}
-.info-with-img {
-  display: flex;
-}
-.info-text {
-  font-size: 12px;
-}
-
-.checkboxes {
-  background-color: white;
-}
-
-.checkbox-text {
-  font-size: 12px;
-}
-
-input.filter-checkbox {
-  padding: 30px;
-}
-
-.hamburger-menu {
-  display: none;
-}
-
-/* MEDIA QUERIES */
+/* STYLES FOR MOBILE */
 
 @media only screen and (max-width: 500px) {
+  /* Menu button appears when viewport width is below 500px */
+
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    height: 30px;
+  }
+
+  /* LIST VIEW MOBILE */
+
   .List {
     left: -1000px;
     position: fixed;
@@ -88,6 +118,9 @@ input.filter-checkbox {
   .List.enter-menu {
     left: 0;
   }
+
+  /* MAP MOBILE */
+
   .Map {
     width: 100%;
   }
@@ -102,6 +135,8 @@ input.filter-checkbox {
     max-height: 150px;
   }
 
+  /* FILTER MOBILE */
+
   .Filter {
     width: 70%;
   }
@@ -115,12 +150,5 @@ input.filter-checkbox {
   }
   .checkbox-text {
     font-size: 17px;
-  }
-  .hamburger-menu {
-    display: block;
-    position: absolute;
-    left: 0;
-    z-index: 10;
-    height: 30px;
   }
 }
