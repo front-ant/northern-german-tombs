@@ -1,8 +1,11 @@
 export const getListOfTombs = () =>
+  // Fetch all entries from the category "Megalithic Tombs in Lüneburg County" from Wikipedia
   fetch(
     'https://de.wikipedia.org/w/api.php?action=query&cmlimit=100&list=categorymembers&cmpageid=9640102&origin=*&format=json'
   )
     .then(res => res.json())
+    // Format the entry titles so they can be used for the next API call
+    // (replace spaces with underscores)
     .then(data =>
       data.query.categorymembers.map(entry => entry.title.split(' ').join('_'))
     );
