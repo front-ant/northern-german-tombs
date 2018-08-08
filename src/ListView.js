@@ -17,6 +17,7 @@ const ListView = props => {
               onClick={event => props.handleClick(event.target, tomb.tid)}>
               {tomb.title}
             </button>
+            // Only show info text for active tomb
             {props.activeTomb.tid === tomb.tid && (
               <div className="expanded-info">
                 <p className="info-text" tabIndex="0">
