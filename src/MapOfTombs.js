@@ -12,6 +12,9 @@ const MapOfTombs = withScriptjs(
     const {activeTomb, tombs, handleClick} = props;
     return (
       <GoogleMap defaultZoom={10} center={{lat: 53.190159, lng: 10.495211}}>
+        {
+          // Generate a bunch of markers based on the showingTombs calculated in App.js
+        }
         {tombs.map(t => (
           <Marker
             position={t.coordinates}
@@ -19,6 +22,9 @@ const MapOfTombs = withScriptjs(
             onClick={event => handleClick(event.target, t.tid)}
           />
         ))}
+        {
+          // Generate a special bouncing marker and an InfoWindow for the active tomb
+        }
         <Marker
           key={activeTomb.tid}
           position={activeTomb.coordinates}
@@ -34,6 +40,9 @@ const MapOfTombs = withScriptjs(
                   {activeTomb.title}
                 </a>
               )}
+              {
+                // Only display the image if it is not the standard placeholder image
+              }
               {activeTomb.thumbnail === undefined ? null : activeTomb.thumbnail
                 .source !==
               'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Lower_Saxony_relief_location_map.jpg/320px-Lower_Saxony_relief_location_map.jpg' ? (

@@ -128,7 +128,9 @@ class App extends Component {
       return (
         <div>
           <p>Error fetching the tomb locations!</p>
-          // At least show an empty map if the API calls to Wikipedia failed
+          {
+            //At least show an empty map if the API calls to Wikipedia failed
+          }
           <MapContainer tombs={[]} activeTomb={[]} handleClick={{}} />
         </div>
       );
