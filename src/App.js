@@ -26,9 +26,10 @@ class App extends Component {
     this.filterImg = this.filterImg.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
   }
+
   async componentDidMount() {
     this.setState({isLoading: true});
-
+    // Fetch API data
     try {
       const listOfTombs = await APICalls.getListOfTombs();
       const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
@@ -40,6 +41,7 @@ class App extends Component {
     }
   }
 
+  // The tomb that is selected via the list or the map marker becomes the active tomb.
   toggleInfos(target, id) {
     const activeTomb = this.state.tombs.filter(t => t.tid === id);
     const [firstActiveTomb] = activeTomb;
@@ -50,6 +52,7 @@ class App extends Component {
     }
   }
 
+  // Filter list of tombs and markers based on text input
   filterPlaces(query) {
     let inputFilteredTombs;
     if (query) {
@@ -65,6 +68,9 @@ class App extends Component {
     }
   }
 
+  // Filter list of tombs and markers based on an available unique image.
+  // (Filter out the ones just using Wikipedia's placeholder image)
+
   filterImg(checkedValue) {
     let checkboxFilteredTombs;
     if (checkedValue) {
@@ -78,6 +84,8 @@ class App extends Component {
     }
     this.setState({checkboxFilteredTombs});
   }
+
+  // Show list of tombs after click on menu button in mobile view
 
   toggleMenu(event) {
     event.preventDefault();
@@ -120,6 +128,7 @@ class App extends Component {
       return (
         <div>
           <p>Error fetching the tomb locations!</p>
+          // At least show an empty map if the API calls to Wikipedia failed
           <MapContainer tombs={[]} activeTomb={[]} handleClick={{}} />
         </div>
       );
