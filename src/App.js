@@ -16,7 +16,9 @@ class App extends Component {
       showingTombs: [],
       inputFilteredTombs: [],
       checkboxFilteredTombs: [],
-      noResults: false
+      noResults: false,
+      error: false,
+      isLoading: false
     };
     // in ES6, _this_ is not autobound to non React methods!
     this.toggleInfos = this.toggleInfos.bind(this);
@@ -25,10 +27,17 @@ class App extends Component {
     this.toggleMenu = this.toggleMenu.bind(this);
   }
   async componentDidMount() {
-    const listOfTombs = await APICalls.getListOfTombs();
-    const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
-    this.setState({tombs});
-    this.setState({showingTombs: tombs});
+    this.setState({isLoading: true});
+
+    try {
+      const listOfTombs = await APICalls.getListOfTombs();
+      const tombs = await APICalls.getDetailsOfTombs(listOfTombs);
+      this.setState({tombs});
+      this.setState({showingTombs: tombs});
+      this.setState({isLoading: false});
+    } catch (error) {
+      this.setState({error, isLoading: false});
+    }
   }
 
   toggleInfos(target, id) {
@@ -104,35 +113,47 @@ class App extends Component {
       showingTombs = [];
     }
 
-    return (
-      <div className="App">
-        <div className="toggle-menu" tabindex="-1">
-          <button className="hamburger-menu" onClick={this.toggleMenu}>
-            Menu
-          </button>
+    if (this.state.isLoading) {
+      return <p>Loading...</p>;
+    }
+    if (this.state.error) {
+      return (
+        <div>
+          <p>Error fetching the tomb locations!</p>
+          <MapContainer tombs={[]} activeTomb={[]} handleClick={{}} />
         </div>
-        <main>
-          <div className="List">
-            <ListView
+      );
+    } else {
+      return (
+        <div className="App">
+          <div className="toggle-menu" tabIndex="-1">
+            <button className="hamburger-menu" onClick={this.toggleMenu}>
+              Menu
+            </button>
+          </div>
+          <main>
+            <div className="List">
+              <ListView
+                tombs={showingTombs}
+                handleClick={this.toggleInfos}
+                activeTomb={this.state.activeTomb}
+              />
+            </div>
+            <div className="Filter">
+              <FilterTombs
+                handleInput={this.filterPlaces}
+                handleCheck={this.filterImg}
+              />
+            </div>
+            <MapContainer
               tombs={showingTombs}
-              handleClick={this.toggleInfos}
               activeTomb={this.state.activeTomb}
+              handleClick={this.toggleInfos}
             />
-          </div>
-          <div className="Filter">
-            <FilterTombs
-              handleInput={this.filterPlaces}
-              handleCheck={this.filterImg}
-            />
-          </div>
-          <MapContainer
-            tombs={showingTombs}
-            activeTomb={this.state.activeTomb}
-            handleClick={this.toggleInfos}
-          />
-        </main>
-      </div>
-    );
+          </main>
+        </div>
+      );
+    }
   }
 }
 
