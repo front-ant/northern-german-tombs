@@ -6,6 +6,7 @@ import ListView from './ListView';
 import FilterTombs from './FilterTombs';
 import escapeRegExp from 'escape-string-regexp';
 import {intersection} from 'underscore';
+import errorPlaceholder from './ifallelsefails.jpg';
 
 class App extends Component {
   constructor(props) {
@@ -127,11 +128,14 @@ class App extends Component {
     if (this.state.error) {
       return (
         <div>
-          <p>Error fetching the tomb locations!</p>
+          <p>
+            Error fetching the tomb locations! This is what you were supposed to
+            see...
+          </p>
           {
             //At least show an empty map if the API calls to Wikipedia failed
           }
-          <MapContainer tombs={[]} activeTomb={[]} handleClick={{}} />
+          <img src={errorPlaceholder} width="100%" alt="error placeholder" />
         </div>
       );
     } else {
