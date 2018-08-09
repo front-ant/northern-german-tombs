@@ -15,7 +15,7 @@ class MapContainer extends Component {
           tombs={this.props.tombs}
           activeTomb={this.props.activeTomb}
           handleClick={this.props.handleClick}
-          role="presentation"
+          role="application"
         />
       </div>
       </ErrorBoundary>
